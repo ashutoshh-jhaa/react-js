@@ -1,26 +1,31 @@
 import { useState } from "react";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const initialTask = JSON.parse(localStorage.getItem("task")) || [];
+  const [tasks, setTasks] = useState(initialTask);
   const [task, setTask] = useState("");
 
   function addTask() {
     if (task.trim() !== "") {
-      setTasks([...tasks, { text: task, completed: false }]);
+      const updatedTasks = [...tasks, { text: task, completed: false }];
+      setTasks(updatedTasks);
+      localStorage.setItem("task", JSON.stringify(updatedTasks));
       setTask("");
     }
   }
 
   function deleteTask(idx) {
-    setTasks(tasks.filter((_, i) => i !== idx));
+    const updatedTasks = tasks.filter((_, i) => i !== idx);
+    setTasks(updatedTasks);
+    localStorage.setItem("task", JSON.stringify(updatedTasks));
   }
 
   function completeTask(idx) {
-    setTasks(
-      tasks.map((t, i) =>
-        i === idx ? { ...t, completed: !t.completed } : t
-      )
+    const updatedTasks = tasks.map((t, i) =>
+      i === idx ? { ...t, completed: !t.completed } : t
     );
+    setTasks(updatedTasks);
+    localStorage.setItem("task", JSON.stringify(updatedTasks));
   }
 
   return (
