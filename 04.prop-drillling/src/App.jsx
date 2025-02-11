@@ -1,4 +1,5 @@
-import ProductList from "./Component/productList";
+import ProductList from "./Components/ProductList";
+
 function App() {
   const products = [
     {
@@ -248,5 +249,4 @@ function App() {
     </div>
   )
 }
-
 export default App;
