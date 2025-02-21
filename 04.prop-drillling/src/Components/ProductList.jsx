@@ -12,4 +12,5 @@ function ProductList({ product }) {
     </>
   )
 }
+
 export default ProductList;
